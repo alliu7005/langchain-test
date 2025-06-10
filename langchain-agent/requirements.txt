@@ -1,0 +1,6 @@
+langchain
+langchain-community
+pydantic
+fastapi
+uvicorn[standard]
+requests
