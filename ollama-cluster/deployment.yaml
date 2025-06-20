@@ -1,23 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ollama-agent
+  name: ollama-server
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ollama-agent
+      app: ollama-server
   template:
     metadata:
       labels:
-        app: ollama-agent
+        app: ollama-server
     spec:
       containers:
-      - name: ollama
+      - name: ollama-server
         image: gcr.io/pivotal-keep-461818-j4/ollama-server:latest
         ports:
         - containerPort: 8080
         env:
+        - name: PORT
+          value: "8080"
         - name: OLLAMA_MODEL
           value: "gemma:2b"
         - name: OLLAMA_NUM_PARALLEL
@@ -26,9 +28,9 @@ spec:
           value: "1"
         resources:
           requests:
-            memory: "16Gi"
-            cpu: "4"
+            memory: "4Gi"
+            cpu: "2"
             # If using GPU, request it here:
           limits:
-            memory: "32Gi"
-            cpu: "8"
+            memory: "4Gi"
+            cpu: "2"

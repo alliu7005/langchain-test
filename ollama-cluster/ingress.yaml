@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ollama-ingress
+  annotations:
+    kubernetes.io/ingress.class: "gce"
+    ingress.gcp.kubernetes.io/pre-shared-cert: "ollama-managed-cert"
+spec:
+  rules:
+    - host: https://agentcore.dev
+      http:
+        paths:
+          - path: /ollama-connect
+            pathType: Prefix
+            backend:
+              service:
+                name: ollama-service
+                port:
+                  number: 80

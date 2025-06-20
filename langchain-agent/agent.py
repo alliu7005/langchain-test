@@ -4,7 +4,7 @@ from langchain.schema import SystemMessage, HumanMessage
 from pydantic import BaseModel
 import os
 
-OLLAMA_HOST = os.getenv("OLLAMA_HOST", "https://ollama-server-365383383851.us-central1.run.app")
+OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://104.155.143.96")
 MODEL = os.getenv("OLLAMA_MODEL", "gemma:2b")  
 
 llm = Ollama(model=MODEL, base_url=OLLAMA_HOST)
